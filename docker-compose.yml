@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  some_cloud_function:
+    image: test_cloud_function
+    build:
+      context: .
+      dockerfile: some_cloud_function/Dockerfile
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./people_app:/var/task/people_app
+      - ./some_cloud_function/app.py:/var/task/app.py
+      - ./people_app_tests/requirements.txt:/test_requirements.txt
+      - ./people_app_tests:/var/task/people_app_tests
